@@ -1,5 +1,7 @@
 const randomNumberWithinRange = (start, end) => {
-    return Math.random() * (end - start) + start;
+    start = Math.ceil(start);
+    end = Math.floor(end);
+    return Math.floor(Math.random() * (end - start + 1)) + start;
 };
 
 const randomDOB = () => {
@@ -12,10 +14,13 @@ const randomDOB = () => {
     return new Date(randomYear, randomMonth, randomDay);
 };
 
-const generateRSAID = () => {
+const generateRSAID = (citizen = false, sex = 'male') => {
     let dob = randomDOB();
-    let id = String(dob.getFullYear() + '' + (dob.getMonth() + '').padStart(2,'0') + (dob.getDay() + '').padStart(2,'0'));
+    console.log(dob);
+    let id = dob.toLocaleDateString()
     return id;
 };
 
-console.log(generateRSAID());
+for(let i = 0; i<=10; i++){
+    console.log(generateRSAID());
+}
